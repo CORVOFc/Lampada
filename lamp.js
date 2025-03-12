@@ -1,30 +1,15 @@
-var $ligar=document.getElementById('ligar')
-var $desligar=document.getElementById('desligar')
-var $lampada=document.getElementById('lamp')
+const ligar = document.getElementById('ligar');
+const desligar = document.getElementById('desligar');
+const lampada = document.getElementById('lamp');
 
-function lampQuebrada(){
-    return $lampada.src.indexOf('quebrada')>-1
-}
+const lampQuebrada = () => lampada.src.includes('quebrada');
 
-function ligarLamp(){
-    if(!lampQuebrada()){
-    $lampada.src='img/lampada-acesa.jpg'
-    }
-}
+const trocarImagem = (imagem) => {
+    if (!lampQuebrada()) lampada.src = imagem;
+};
 
-function desligarLamp(){
-    if(!lampQuebrada()){
-        $lampada.src='img/lampada-apagada.jpg'
-        }
-}
- 
-function quebrarLamp(){
-   $lampada.src='img/lampada-quebrada.jpg'
-        }
-
-
-$ligar.addEventListener('click',ligarLamp)
-$desligar.addEventListener('click',desligarLamp)
-$lampada.addEventListener('mouseover',ligarLamp)
-$lampada.addEventListener('mouseleave',desligarLamp)
-$lampada.addEventListener('dblclick',quebrarLamp)
+ligar.addEventListener('click', () => trocarImagem('lampada-acesa.jpg'));
+desligar.addEventListener('click', () => trocarImagem('lampada-apagada.jpg'));
+lampada.addEventListener('mouseover', () => trocarImagem('lampada-acesa.jpg'));
+lampada.addEventListener('mouseleave', () => trocarImagem('lampada-apagada.jpg'));
+lampada.addEventListener('dblclick', () => lampada.src = 'lampada-quebrada.jpg');
